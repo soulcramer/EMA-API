@@ -1,0 +1,13 @@
+{
+  "name": "EMAP-API",
+	"version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "aero": "*",
+    "aero-aerospike": "*",
+    "http-status-codes": "*",
+    "limiter": "*",
+    "pretty-bytes": "*",
+    "request-promise": "*",
+  }
+}
