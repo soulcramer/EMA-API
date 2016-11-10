@@ -1,20 +1,24 @@
 {
-	"domain": "",
-	"title": "Untitled website",
-	"static": [],
-	"styles": [],
-	"scripts": [],
-	"fonts": [],
-	"icons": [],
-	"languages": [
-		"en"
-	],
-	"manifest": {},
-	"redirect": {},
-	"headers": {},
-	"ports": {
-		"http": 4000,
-		"https": 4001,
-		"liveReload": 9000
-	}
+  "domain": "",
+  "title": "Untitled website",
+  "static": [],
+  "styles": [],
+  "scripts": [],
+  "fonts": [],
+  "icons": [],
+  "languages": [
+    "en"
+  ],
+  "manifest": {},
+  "redirect": {},
+  "headers": {},
+  "database": {
+    "namespace": "test",
+    "host": "127.0.0.1:3000"
+  },
+  "ports": {
+    "http": 4000,
+    "https": 4001,
+    "liveReload": 9000
+  }
 }

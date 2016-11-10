@@ -1,13 +1,14 @@
 {
   "name": "EMAP-API",
-	"version": "0.0.1",
+  "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
-    "aero": "*",
+    "aero": "git+https://git@github.com/aerojs/aero.git",
     "aero-aerospike": "*",
+    "body-parser": "*",
     "http-status-codes": "*",
     "limiter": "*",
     "pretty-bytes": "*",
-    "request-promise": "*",
+    "request-promise": "*"
   }
 }
