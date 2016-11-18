@@ -1,1 +1,1 @@
-exports.get = (request, response) => response.end('api')
+exports.get = (request, response) => response.end('api');

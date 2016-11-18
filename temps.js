@@ -17,7 +17,7 @@ request({
     for (let i = 0; i < entry.length - 1; i++) {
         response.entries[i] = {};
 
-        // Seperate
+        // Separatey
         let tempEntry = entry[i].split(';');
         for (let j = 0; j < tempEntry.length; j += 2) {
             let property = response.entries[i];

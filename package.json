@@ -3,11 +3,16 @@
   "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
-    "aero": "git+https://git@github.com/aerojs/aero.git",
+    "aero": "*",
     "aero-aerospike": "*",
+    "aerospike": "latest",
+    "bluebird": "*",
     "body-parser": "*",
+    "chalk": "latest",
+    "global": "^4.3.1",
     "http-status-codes": "*",
     "limiter": "*",
+    "pm2": "^2.1.5",
     "pretty-bytes": "*",
     "request-promise": "*"
   }
