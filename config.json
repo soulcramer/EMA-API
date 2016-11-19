@@ -1,13 +1,13 @@
 {
   "domain": "",
-  "title": "Untitled website",
+  "title": "EMA API",
   "static": [],
   "styles": [],
   "scripts": [],
   "fonts": [],
   "icons": [],
   "languages": [
-    "en"
+    "fr"
   ],
   "manifest": {},
   "redirect": {},
@@ -17,7 +17,7 @@
     "host": "127.0.0.1:3000"
   },
   "ports": {
-    "http": 5000,
+    "http": 4000,
     "https": 5001
   }
 }

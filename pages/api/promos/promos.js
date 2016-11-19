@@ -1,10 +1,5 @@
-const PromosCacheTime = 120 * 60 * 1000;
-
-let updatePromoList = coroutine(function*() {
-    console.log(chalk.yellow('✖'), 'Updating all promos pages...');
-
-    let now = new Date();
-    let request = require('request-promise');
+exports.get = (request, response) => {
+    request = require('request-promise');
     let headers = {
         'User-Agent': 'Anime Release Notifier',
         'Accept': 'application/json'
@@ -32,23 +27,17 @@ let updatePromoList = coroutine(function*() {
                 }
             );
     };
+
     request({
         uri: `${baseUrl}?TYPE=promos_txt`,
         method: 'GET',
         headers: headers
-    }).then(body =>
+    }).then(body => {
+        promoList = getPromoList(body);
+        response.render({
+            promos: promoList
+        })
 
-        console.log(chalk.green('[Update Promo list]'), chalk.blue(getPromoList(body)))
-    );
+    });
 
-    // for(let promos of ema.promoList) {
-    //     if(promos.pageGenerated && now.getTime() - (new Date(promos.pageGenerated)).getTime() < PromosCacheTime)
-    //         continue;
-    //
-    //     yield Promise.delay(2000);
-    //     yield ema.updateAnimePage(anime)
-    // }
-});
-
-
-ema.repeatedly(10 * hours, updatePromoList);
+};

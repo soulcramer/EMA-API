@@ -14,7 +14,7 @@ ema.db.scanPriority = require('aerospike').scanPriority.LOW;
 
 ema.db.ready.then(Promise.coroutine(function*() {
     ema.promoList = yield ema.filter('Promo', promo => true);
-    console.log(ema.promoList.length + ' promo');
+    console.log(ema.promoList.length + ' promos');
 
     // Build search index
     // require('../startup/search-index');
