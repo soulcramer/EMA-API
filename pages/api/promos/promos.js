@@ -14,7 +14,7 @@ exports.get = function (request, response) {
     }
 
     ema.db.get('Promos', promoId).then(promo => {
-        response.end({promo});
+        response.json({promo});
     }).catch(error => {
         response.writeHead(HTTP.BAD_REQUEST);
         response.json({

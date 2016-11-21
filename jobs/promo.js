@@ -14,8 +14,7 @@ let updatePromoList = coroutine(function*() {
     let getPromoList = function (body) {
         return body.split(" \r\n")
             .filter(function (item) {
-                return item !== "EOT";
-
+                return item !== "EOT\r\n";
             })
             .map(
                 function (textPromo) {
