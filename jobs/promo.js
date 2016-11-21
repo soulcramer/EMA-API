@@ -1,5 +1,3 @@
-const PromosCacheTime = 120 * 60 * 1000;
-
 let updatePromoList = coroutine(function*() {
     console.log(chalk.yellow('✖'), 'Updating all promos pages...');
 
@@ -23,12 +21,13 @@ let updatePromoList = coroutine(function*() {
                 function (textPromo) {
                     let arrayPromo = textPromo.split(';');
 
-                    return {
+                    let promo = {
                         "id": arrayPromo[1],
                         "name": arrayPromo[3],
                         "bg_color": arrayPromo[7],
                         "txt_color": arrayPromo[9]
                     };
+                    ema.db.set('Promos', promo.id, promo);
                 }
             );
     };
@@ -36,10 +35,11 @@ let updatePromoList = coroutine(function*() {
         uri: `${baseUrl}?TYPE=promos_txt`,
         method: 'GET',
         headers: headers
-    }).then(body =>
-
-        console.log(chalk.green('[Update Promo list]'), chalk.blue(getPromoList(body)))
-    );
+    }).then(body => {
+        console.log(chalk.green('[Updating the Promotion list]'));
+        getPromoList(body);
+        console.log(chalk.green('[Promotion list updated]'))
+    });
 
     // for(let promos of ema.promoList) {
     //     if(promos.pageGenerated && now.getTime() - (new Date(promos.pageGenerated)).getTime() < PromosCacheTime)
@@ -49,6 +49,8 @@ let updatePromoList = coroutine(function*() {
     //     yield ema.updateAnimePage(anime)
     // }
 });
+
+const PromosCacheTime = 120 * 60 * 1000;
 
 
 ema.repeatedly(10 * hours, updatePromoList);

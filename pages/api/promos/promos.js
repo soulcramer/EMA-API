@@ -1,43 +1,26 @@
-exports.get = (request, response) => {
-    request = require('request-promise');
-    let headers = {
-        'User-Agent': 'Anime Release Notifier',
-        'Accept': 'application/json'
-    };
-    let promoList = null;
-    const baseUrl = 'http://webdfd.mines-ales.fr/cybema/cgi-bin/cgiempt.exe';
+exports.get = function (request, response) {
 
+    let promoId = request.params[0];
+    if (!promoId) {
+        return ema.db.all('Promos').then(promos => {
+            // console.log(promos);
+            response.json(promos);
+        }).catch(error => {
+            response.writeHead(HTTP.BAD_REQUEST);
+            response.json({
+                error: error.toString()
+            });
+        });
+    }
 
-    let getPromoList = function (body) {
-        return body.split(" \r\n")
-            .filter(function (item) {
-                return item !== "EOT";
+    ema.db.get('Promos', promoId).then(promo => {
+        response.end({promo});
+    }).catch(error => {
+        response.writeHead(HTTP.BAD_REQUEST);
+        response.json({
+            error: error.toString()
+        });
+    })
 
-            })
-            .map(
-                function (textPromo) {
-                    let arrayPromo = textPromo.split(';');
-
-                    return {
-                        "id": arrayPromo[1],
-                        "name": arrayPromo[3],
-                        "bg_color": arrayPromo[7],
-                        "txt_color": arrayPromo[9]
-                    };
-                }
-            );
-    };
-
-    request({
-        uri: `${baseUrl}?TYPE=promos_txt`,
-        method: 'GET',
-        headers: headers
-    }).then(body => {
-        promoList = getPromoList(body);
-        response.render({
-            promos: promoList
-        })
-
-    });
 
 };
